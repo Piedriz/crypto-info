@@ -1,0 +1,21 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+body{
+  font-family: 'Quicksand', sans-serif; 
+}
+
+.cards-container{
+  margin-right: 10%;
+  margin-left: 10%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  place-content: center;
+  gap: 1rem;
+  padding: 50px 0;
+}
+
+/* card container light theme y dark theme */

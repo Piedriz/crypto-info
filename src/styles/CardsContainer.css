@@ -1,0 +1,11 @@
+.cards-container{
+    margin-right: 10%;
+    margin-left: 10%;
+  
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    place-content: center;
+    gap: 1rem;
+    padding: 50px 0;
+  }
+  
