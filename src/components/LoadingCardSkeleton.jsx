@@ -6,7 +6,7 @@ import { AppContext } from '../context/AppContext'
 
 export const LoadingCardSkeleton = ({ ncards }) => {
 
-  const {theme} = React.useContext(AppContext)
+  const {states:{theme}} = React.useContext(AppContext)
   return (Array(ncards).fill(0).map((_,i) => {
     return (
       <div className='card-skeleton-div' key={i}>

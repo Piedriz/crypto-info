@@ -4,7 +4,7 @@ import '../styles/Header.css'
 import { AppContext } from '../context/AppContext'
 
 export const Header = () => {
-    const {theme,setTheme} = React.useContext(AppContext)
+    const {states:{theme},setStates:{setTheme}} = React.useContext(AppContext)
     return (
         <header className={`header${theme ? '-darktheme' : ''}`}>
             <nav className='nav-bar'>

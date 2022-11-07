@@ -1,4 +1,4 @@
-import { useState, useContext, useMemo, useRef, useCallback } from 'react';
+import React,{ useState, useContext, useMemo, useRef, useCallback } from 'react';
 import { Header } from '../components/Header';
 import { AssetCard } from '../components/AssetCard';
 import { SearchImput } from '../components/SearchImput';
@@ -17,7 +17,7 @@ const App = () => {
 
   const { cryptoInfo, cryptoLogos, isLoading } = useAssets();
 
-  const { theme } = useContext(AppContext);
+  const {states:{theme}} = React.useContext(AppContext)
 
   const [search, setSearch] = useState('');
 

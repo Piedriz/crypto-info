@@ -3,7 +3,7 @@ import '../styles/SearchImput.css'
 import {FaSearchDollar} from 'react-icons/fa'
 import { AppContext } from '../context/AppContext'
 export const SearchImput = ({search,handleSearch,reference}) => {
-  const {theme} = React.useContext(AppContext);
+  const {states:{theme}} = React.useContext(AppContext)
   return (
     <div className='search'>
       <FaSearchDollar className='search-icon'/>
