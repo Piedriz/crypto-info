@@ -1,10 +1,10 @@
 import React from 'react'
 import Switcher from './Switcher'
 import '../styles/Header.css'
-import { ThemeContext } from '../context/ThemeContext'
+import { AppContext } from '../context/AppContext'
 
 export const Header = () => {
-    const {theme,setTheme} = React.useContext(ThemeContext)
+    const {theme,setTheme} = React.useContext(AppContext)
     return (
         <header className={`header${theme ? '-darktheme' : ''}`}>
             <nav className='nav-bar'>

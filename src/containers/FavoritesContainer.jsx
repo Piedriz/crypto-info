@@ -1,8 +1,8 @@
 import React from 'react'
 import '../styles/FavoritesContainer.css'
-import { ThemeContext } from '../context/ThemeContext'
+import { AppContext } from '../context/AppContext'
 export const FavoritesContainer = ({ favorites, cryptoLogos,setModalInfo }) => {
-    const {theme} = React.useContext(ThemeContext);
+    const {theme} = React.useContext(AppContext);
 
     const findLogo = (favID) => {
         const logo = (cryptoLogos.filter(logo => logo.asset_id === favID))

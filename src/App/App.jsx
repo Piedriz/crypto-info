@@ -6,8 +6,7 @@ import { CardsContainer } from '../containers/CardsContainer';
 import { MainContainer } from '../containers/MainContainer';
 import { FavoritesContainer } from '../containers/FavoritesContainer';
 import '../styles/App.css';
-import { ThemeContext } from '../context/ThemeContext';
-
+import { AppContext } from '../context/AppContext';
 import { useAssets } from '../hooks/useAssets';
 import { LoadingCardSkeleton } from '../components/LoadingCardSkeleton';
 import { useFavorites } from '../hooks/useFavorites';
@@ -18,15 +17,15 @@ const App = () => {
 
   const { cryptoInfo, cryptoLogos, isLoading } = useAssets();
 
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(AppContext);
 
   const [search, setSearch] = useState('');
 
-  const {modalInfo,setModalInfo} = useModal(); 
+  const { modalInfo, setModalInfo } = useModal();
 
   const searchImput = useRef(null);
-  const {onHandleFavorite,onDelete,favorites} = useFavorites(); 
-  
+  const { onHandleFavorite, onDelete, favorites } = useFavorites();
+
 
   const handleSearch = useCallback(() => {
     setSearch(searchImput.current.value)
@@ -39,21 +38,32 @@ const App = () => {
     [cryptoInfo, search]
   )
 
-  const findLogos = (item) =>{
-    return(cryptoLogos.filter(i => i.asset_id === item.asset_id))
+  const findLogos = (item) => {
+    return (cryptoLogos.filter(i => i.asset_id === item.asset_id))
   }
 
   document.body.style = `background-color: ${theme ? 'rgb(46, 46, 46);' : 'rgb(201, 199, 199);'} color: ${theme ? 'white;' : ' black;'}`
   const favoritesArray = favorites.favorites
-  
+
   return (
     <MainContainer>
       <Header />
-      {favoritesArray[0] && <FavoritesContainer setModalInfo={setModalInfo} favorites={favorites.favorites} cryptoLogos={cryptoLogos}/>}
-      <SearchImput reference={searchImput} search={search} handleSearch={handleSearch} />
-      
+
+      {favoritesArray[0] &&
+        <FavoritesContainer
+          setModalInfo={setModalInfo}
+          favorites={favorites.favorites}
+          cryptoLogos={cryptoLogos}
+        />}
+
+      <SearchImput
+        reference={searchImput}
+        search={search}
+        handleSearch={handleSearch}
+      />
+
       <CardsContainer>
-        {isLoading ? <LoadingCardSkeleton ncards={10}/>:null}
+        {isLoading ? <LoadingCardSkeleton ncards={10} /> : null}
         {filteredAssets.map(item => {
           //  
           return (
@@ -65,12 +75,12 @@ const App = () => {
               findLogo={findLogos(item)}
               onHandleFavorite={onHandleFavorite}
               onDelete={onDelete}
-              setModalInfo={setModalInfo}/>   
+              setModalInfo={setModalInfo} />
           )
         })}
       </CardsContainer>
-      {modalInfo && <AssetInfoModal img={findLogos(modalInfo)} setModalInfo={setModalInfo} item={modalInfo}/>}
-      </MainContainer>
-      )
+      {modalInfo && <AssetInfoModal img={findLogos(modalInfo)} setModalInfo={setModalInfo} item={modalInfo} />}
+    </MainContainer>
+  )
 }
 export default App

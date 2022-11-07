@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App/App'
-import { ThemeContextProvider } from './context/ThemeContext'
-ReactDOM.createRoot(document.getElementById('root')).render(
+import { AppContextProvider } from './context/AppContext'
 
-  <ThemeContextProvider>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <AppContextProvider>
     <App />
-  </ThemeContextProvider>
+  </AppContextProvider>
 )
