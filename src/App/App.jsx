@@ -1,4 +1,4 @@
-import React,{ useState, useContext, useMemo, useRef, useCallback } from 'react';
+import React, { useState, useContext, useMemo, useRef, useCallback } from 'react';
 import { Header } from '../components/Header';
 import { AssetCard } from '../components/AssetCard';
 import { SearchImput } from '../components/SearchImput';
@@ -7,27 +7,19 @@ import { MainContainer } from '../containers/MainContainer';
 import { FavoritesContainer } from '../containers/FavoritesContainer';
 import '../styles/App.css';
 import { AppContext } from '../context/AppContext';
-import { useAssets } from '../hooks/useAssets';
 import { LoadingCardSkeleton } from '../components/LoadingCardSkeleton';
-import { useFavorites } from '../hooks/useFavorites';
-import { useModal } from '../hooks/useModal';
 
 import { AssetInfoModal } from '../components/AssetInfoModal';
 const App = () => {
 
-  const { cryptoInfo, cryptoLogos, isLoading } = useAssets();
-
-  const {states:{theme}} = React.useContext(AppContext)
+  const {
+    states: { theme, cryptoInfo, cryptoLogos, isLoading, favorites, modalInfo }
+  } = useContext(AppContext)
 
   const [search, setSearch] = useState('');
-
-  const { modalInfo, setModalInfo } = useModal();
-
   const searchImput = useRef(null);
-  const { onHandleFavorite, onDelete, favorites } = useFavorites();
 
-
-  const handleSearch = useCallback(() => {
+  const handleSearch = useCallback(() => {  
     setSearch(searchImput.current.value)
   }, [])
 
@@ -43,18 +35,14 @@ const App = () => {
   }
 
   document.body.style = `background-color: ${theme ? 'rgb(46, 46, 46);' : 'rgb(201, 199, 199);'} color: ${theme ? 'white;' : ' black;'}`
-  const favoritesArray = favorites.favorites
 
   return (
     <MainContainer>
       <Header />
 
-      {favoritesArray[0] &&
-        <FavoritesContainer
-          setModalInfo={setModalInfo}
-          favorites={favorites.favorites}
-          cryptoLogos={cryptoLogos}
-        />}
+      {favorites[0] &&
+        <FavoritesContainer />
+      }
 
       <SearchImput
         reference={searchImput}
@@ -68,18 +56,18 @@ const App = () => {
           //  
           return (
             <AssetCard
-              favorites={favoritesArray}
               key={item.asset_id}
-              theme={theme}
               item={item}
               findLogo={findLogos(item)}
-              onHandleFavorite={onHandleFavorite}
-              onDelete={onDelete}
-              setModalInfo={setModalInfo} />
+            />
           )
         })}
       </CardsContainer>
-      {modalInfo && <AssetInfoModal img={findLogos(modalInfo)} setModalInfo={setModalInfo} item={modalInfo} />}
+      {modalInfo && 
+        <AssetInfoModal 
+          img={findLogos(modalInfo)} 
+            item={modalInfo} />
+      }
     </MainContainer>
   )
 }

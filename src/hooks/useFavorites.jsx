@@ -41,9 +41,8 @@ const favoritesReducer = (state, action) => {
 
 export const useFavorites = () =>{
     const [favorites, dispatch] = React.useReducer(favoritesReducer, initialState);
-
     const onHandleFavorite = (asset) => { dispatch({ type: actionTypes.add, payload: asset })}
     const onDelete = (asset) => { dispatch({ type: actionTypes.delete, payload: asset }) }
 
-    return({onHandleFavorite,onDelete,favorites})
+    return({onHandleFavorite,favorites})
 }

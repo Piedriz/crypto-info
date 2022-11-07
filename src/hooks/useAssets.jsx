@@ -13,7 +13,7 @@ export const useAssets = () => {
 
     React.useEffect(() => {
         getData();
-      }, [])
+    }, [])
 
     const getData = async () => {
         const responseInfo = await axios({
@@ -36,5 +36,5 @@ export const useAssets = () => {
         setCryptoLogos(responseLogos.data);
         setIsLoading(!isLoading);
     }
-    return { cryptoInfo, cryptoLogos, getData,isLoading }
+    return { cryptoInfo, cryptoLogos, isLoading }
 }

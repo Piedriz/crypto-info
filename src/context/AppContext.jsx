@@ -6,13 +6,14 @@ export const AppContext = React.createContext();
 
 export const AppContextProvider = ({children}) =>{
     const [theme,setTheme] = React.useState(false);
-    const {cryptoInfo, cryptoLogos, getData, isLoading} = useAssets();
-    const {onHandleFavorite,onDelete,favorites} = useFavorites();
+    const {cryptoInfo, cryptoLogos, isLoading} = useAssets();
+    const {onHandleFavorite,favorites:{favorites}} = useFavorites();
     const [modalInfo,setModalInfo] = React.useState(null)
 
 
     return(
-        <AppContext.Provider value={{states:{theme},setStates:{setTheme}}}>
+        <AppContext.Provider value={{states:{theme,cryptoInfo,cryptoLogos,isLoading,favorites,modalInfo}
+                                    ,setStates:{setTheme,onHandleFavorite,setModalInfo}}}>
             {children}
         </AppContext.Provider>
     );

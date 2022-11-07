@@ -3,8 +3,9 @@ import '../styles/AssetCard.css';
 import { MdFavorite } from 'react-icons/md';
 import { AppContext } from '../context/AppContext';
 
-export const AssetCard = ({ item, findLogo, onHandleFavorite, favorites, setModalInfo }) => {
-    const {states:{theme}} = React.useContext(AppContext)
+export const AssetCard = ({ item, findLogo}) => {
+    const {states:{theme,favorites},
+            setStates:{onHandleFavorite,setModalInfo}} = React.useContext(AppContext)
 
     const isInFavorites = (item) => {
         const find = favorites.find(fav => fav === item)

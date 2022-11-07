@@ -1,9 +1,9 @@
 import React from 'react'
 import '../styles/FavoritesContainer.css'
 import { AppContext } from '../context/AppContext'
-export const FavoritesContainer = ({ favorites, cryptoLogos,setModalInfo }) => {
-    const {states:{theme}} = React.useContext(AppContext)
-
+export const FavoritesContainer = () => {
+   
+    const {states:{theme,favorites,cryptoLogos},setStates:{setModalInfo}} = React.useContext(AppContext)
     const findLogo = (favID) => {
         const logo = (cryptoLogos.filter(logo => logo.asset_id === favID))
         return (logo[0].url)
