@@ -10,10 +10,21 @@
     background-color: rgb(36, 36, 36);
 }
 
-
 .nav-bar{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
+}
+
+.favorites-button{
+    border-style: none;
+    cursor: pointer;
+    background: transparent;
+    display: none;
+}
+@media (max-width: 660px) {
+    .favorites-button {
+        display:block;
+    }
 }

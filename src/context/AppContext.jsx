@@ -8,12 +8,13 @@ export const AppContextProvider = ({children}) =>{
     const [theme,setTheme] = React.useState(false);
     const {cryptoInfo, cryptoLogos, isLoading} = useAssets();
     const {onHandleFavorite,favorites:{favorites}} = useFavorites();
-    const [modalInfo,setModalInfo] = React.useState(null)
+    const [modalInfo,setModalInfo] = React.useState(null);
+    const [toggleMenu, setToggleMenu] = React.useState(false);
 
 
     return(
-        <AppContext.Provider value={{states:{theme,cryptoInfo,cryptoLogos,isLoading,favorites,modalInfo}
-                                    ,setStates:{setTheme,onHandleFavorite,setModalInfo}}}>
+        <AppContext.Provider value={{states:{theme,cryptoInfo,cryptoLogos,isLoading,favorites,modalInfo,toggleMenu}
+                                    ,setStates:{setTheme,onHandleFavorite,setModalInfo,setToggleMenu}}}>
             {children}
         </AppContext.Provider>
     );

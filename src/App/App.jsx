@@ -10,16 +10,17 @@ import { AppContext } from '../context/AppContext';
 import { LoadingCardSkeleton } from '../components/LoadingCardSkeleton';
 
 import { AssetInfoModal } from '../components/AssetInfoModal';
+import { FavoritesAside } from '../containers/FavoritesAside';
 const App = () => {
 
   const {
-    states: { theme, cryptoInfo, cryptoLogos, isLoading, favorites, modalInfo }
+    states: { theme, cryptoInfo, cryptoLogos, isLoading, favorites, modalInfo, toggleMenu }
   } = useContext(AppContext)
 
   const [search, setSearch] = useState('');
   const searchImput = useRef(null);
 
-  const handleSearch = useCallback(() => {  
+  const handleSearch = useCallback(() => {
     setSearch(searchImput.current.value)
   }, [])
 
@@ -44,11 +45,16 @@ const App = () => {
         <FavoritesContainer />
       }
 
-      <SearchImput
-        reference={searchImput}
-        search={search}
-        handleSearch={handleSearch}
-      />
+      {toggleMenu &&
+        <FavoritesAside />
+      }
+
+      {!toggleMenu &&
+        <SearchImput
+          reference={searchImput}
+          search={search}
+          handleSearch={handleSearch}
+        />}
 
       <CardsContainer>
         {isLoading ? <LoadingCardSkeleton ncards={10} /> : null}
@@ -63,10 +69,10 @@ const App = () => {
           )
         })}
       </CardsContainer>
-      {modalInfo && 
-        <AssetInfoModal 
-          img={findLogos(modalInfo)} 
-            item={modalInfo} />
+      {modalInfo &&
+        <AssetInfoModal
+          img={findLogos(modalInfo)}
+          item={modalInfo} />
       }
     </MainContainer>
   )
