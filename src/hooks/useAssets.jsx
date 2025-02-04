@@ -26,7 +26,7 @@ export const useAssets = () => {
         });
         const responseLogos = await axios({
             method: 'get',
-            url: 'http://rest.coinapi.io/v1/assets/icons/{2px}',
+            url: 'http://rest.coinapi.io/v1/assets/icons/2',
             headers: {
                 'X-CoinAPI-Key': `${API_KEY3}`,
                 'Accept': 'application/json'
